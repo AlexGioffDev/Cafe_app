@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TownCafe - The best Cafe in town</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Hachi+Maru+Pop&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script src="https://kit.fontawesome.com/5999390f2e.js" crossorigin="anonymous"></script>
+</head>
+<body>
+
+    <header class="">
+        <p class="advice">Click the button</p>
+        <div class="container">
+            <h1 class="title">TownCafe</h1>
+        </div>
+    </header>
+    <main>
+        <div class="main-container">
+            <div class="cafes-container">
+                {% for cafe in cafes %}
+                    <div class="cafe-container" style="background-image: url({{cafe.img_url}});">
+                        <div class="oveflow">
+                            <div class="info">
+                                <p><i class="fas fa-coffee"></i> {{cafe.seats}}</p>
+                                <p>{{cafe.coffee_price}}</p>
+                            </div>
+                            <h1 class="name">{{cafe.name}}</h1>
+                            <div class="plugin">
+                                {% if cafe.has_sockets %}
+                                    <i class="fas fa-plug"></i>
+                                {% endif %}
+                                {% if cafe.has_toilet %}
+                                    <i class="fas fa-restroom"></i>
+                                {% endif %}
+                                {% if cafe.has_wifi %}
+                                    <i class="fas fa-wifi"></i>
+                                {% endif %}
+                                {% if cafe.can_take_calls %}
+                                    <i class="fas fa-phone"></i>
+                                {% endif %}
+                                <a href="{{cafe.map_url}}" target="_blank">
+                                    <i class="fas fa-map"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main>
+</body>
+<script src="{{ url_for('static', filename='js/main.js')}}"></script>
+</html>
